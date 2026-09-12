@@ -7,37 +7,37 @@ export interface CalendarState {
 }
 
 export type CalendarAction =
-  | { type: 'begin'; task: CalendarTask }
-  | { type: 'change'; task: CalendarTask }
-  | { type: 'open'; popup: TaskPopup }
-  | { type: 'close' }
-  | { type: 'save'; task: CalendarTask }
-  | { type: 'delete'; id: string };
+  | { type: 'createDraft'; task: CalendarTask }
+  | { type: 'updateRange'; task: CalendarTask }
+  | { type: 'openPopup'; popup: TaskPopup }
+  | { type: 'closePopup' }
+  | { type: 'saveTask'; task: CalendarTask }
+  | { type: 'deleteTask'; id: string };
 
 export const initialCalendarState: CalendarState = { tasks: [], draft: null, popup: null };
 
 export function calendarReducer(state: CalendarState, action: CalendarAction): CalendarState {
   switch (action.type) {
-    case 'begin':
+    case 'createDraft':
       return { ...state, draft: action.task, popup: null };
-    case 'change': {
+    case 'updateRange': {
       const current = state.draft?.id === action.task.id ? state.draft : state.tasks.find((task) => task.id === action.task.id);
       if (!current || (current.startMinute === action.task.startMinute && current.endMinute === action.task.endMinute)) return state;
       return state.draft?.id === action.task.id
         ? { ...state, draft: action.task }
         : { ...state, tasks: state.tasks.map((task) => task.id === action.task.id ? action.task : task) };
     }
-    case 'open':
+    case 'openPopup':
       return { ...state, popup: action.popup, draft: action.popup.mode === 'create' ? state.draft : null };
-    case 'close':
+    case 'closePopup':
       return { ...state, popup: null, draft: null };
-    case 'save':
+    case 'saveTask':
       return {
         tasks: state.tasks.some((task) => task.id === action.task.id)
           ? state.tasks.map((task) => task.id === action.task.id ? action.task : task)
           : [...state.tasks, action.task], draft: null, popup: null
       };
-    case 'delete':
+    case 'deleteTask':
       return { ...state, tasks: state.tasks.filter((task) => task.id !== action.id), popup: null };
   }
 }

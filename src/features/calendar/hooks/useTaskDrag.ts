@@ -6,8 +6,6 @@ import { changeTaskRange, PIXELS_PER_MINUTE } from '../model/time';
 interface DragSession {
   pointerId: number;
   element: HTMLElement;
-  scroller: HTMLElement;
-  mode: DragMode;
   original: CalendarTask;
   startY: number;
   clientY: number;
@@ -29,12 +27,12 @@ export default function useTaskDrag(scrollerRef: RefObject<HTMLDivElement | null
     if (!scroller || !event.isPrimary || event.button !== 0 || sessionRef.current) return;
     event.preventDefault();
     const session: DragSession = {
-      pointerId: event.pointerId, element: event.currentTarget, scroller, mode, original: task,
+      pointerId: event.pointerId, element: event.currentTarget, original: task,
       startY: event.clientY, clientY: event.clientY, startScroll: scroller.scrollTop,
       lastDelta: 0, moved: false, headerHeight: scroller.querySelector('thead')?.getBoundingClientRect().height ?? 0,
     };
     sessionRef.current = session;
-    if (mode === 'create') dispatch({ type: 'begin', task });
+    if (mode === 'create') dispatch({ type: 'createDraft', task });
     session.element.setPointerCapture(event.pointerId);
     let frame = 0;
     let lastFrame = performance.now();
@@ -44,7 +42,7 @@ export default function useTaskDrag(scrollerRef: RefObject<HTMLDivElement | null
       if (!session.moved && Math.abs(delta) < 3) return session.original;
       session.moved = true;
       const updated = changeTaskRange(session.original, mode, delta);
-      if (delta !== session.lastDelta) dispatch({ type: 'change', task: updated });
+      if (delta !== session.lastDelta) dispatch({ type: 'updateRange', task: updated });
       session.lastDelta = delta;
       return updated;
     };
@@ -54,12 +52,12 @@ export default function useTaskDrag(scrollerRef: RefObject<HTMLDivElement | null
       const updated = update();
       cleanupRef.current();
       if (cancelled) {
-        dispatch(mode === 'create' ? { type: 'close' } : { type: 'change', task: session.original });
+        dispatch(mode === 'create' ? { type: 'closePopup' } : { type: 'updateRange', task: session.original });
       } else if (mode === 'create') {
         const anchor = session.element.querySelector<HTMLElement>('[data-draft]');
         if (session.moved && updated.endMinute > updated.startMinute && anchor) {
-          dispatch({ type: 'open', popup: { mode: 'create', taskId: task.id, anchor } });
-        } else dispatch({ type: 'close' });
+          dispatch({ type: 'openPopup', popup: { mode: 'create', taskId: task.id, anchor } });
+        } else dispatch({ type: 'closePopup' });
       }
     };
 

@@ -1,20 +1,3 @@
-.calendar-layers {
-  position: absolute;
-  top: var(--calendar-header-height);
-  bottom: 0;
-  left: var(--calendar-time-width);
-  right: 0;
-  display: grid;
-  z-index: 5;
-}
-
-.calendar-day-layer {
-  position: relative;
-  min-width: 0;
-  touch-action: none;
-  user-select: none;
-}
-
 .calendar-task {
   position: absolute;
   box-sizing: border-box;
@@ -31,12 +14,18 @@
 
 .calendar-task-title,
 .calendar-task-time { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
 .calendar-task-title { font-weight: 500; }
+
 .calendar-task--draft { pointer-events: none; }
+
 .calendar-task--selected { pointer-events: auto; cursor: grab; }
+
 .calendar-task--selected:active { cursor: grabbing; }
+
 .calendar-task--selected,
 .calendar-task:focus-visible { outline: 2px solid #0b57d0; outline-offset: -2px; }
+
 .calendar-task--conflict { box-shadow: inset 0 0 0 2px #e8790c; }
 
 .calendar-resize-handle {
@@ -48,8 +37,11 @@
   cursor: ns-resize;
   touch-action: none;
 }
+
 .calendar-resize-handle--start { top: 0; }
+
 .calendar-resize-handle--end { bottom: 0; }
+
 .calendar-resize-handle::after {
   content: '';
   position: absolute;

@@ -1,6 +1,7 @@
+import './style.css';
 import { FormEvent, useState } from 'react';
-import { CalendarTask } from '../model/types';
-import { formatLongDate, formatTime, parseTime } from '../model/time';
+import { CalendarTask } from '../../model/types';
+import { formatLongDate, formatTime, parseTime } from '../../model/time';
 
 interface Props {
   task: CalendarTask;

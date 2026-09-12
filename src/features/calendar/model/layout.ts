@@ -6,11 +6,6 @@ export interface TaskLayout {
   conflict: boolean;
 }
 
-export function tasksOverlap(a: CalendarTask, b: CalendarTask) {
-  return a.id !== b.id && a.date === b.date && a.endMinute > a.startMinute
-    && b.endMinute > b.startMinute && a.startMinute < b.endMinute && a.endMinute > b.startMinute;
-}
-
 export function layoutDayTasks(tasks: CalendarTask[]): Map<string, TaskLayout> {
   const layouts = new Map<string, TaskLayout>();
   const sorted = [...tasks].sort((a, b) => a.startMinute - b.startMinute || b.endMinute - a.endMinute || a.id.localeCompare(b.id));

@@ -1,0 +1,30 @@
+.calendar-modal-title,
+.calendar-modal-description {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+}
+
+.calendar-modal-description { min-height: 90px; resize: vertical; }
+
+.calendar-modal-actions { display: flex; justify-content: flex-end; margin-top: 12px; }
+
+.calendar-modal-save {
+  padding: 6px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: #0b57d0;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.calendar-modal-save:disabled { opacity: 0.5; cursor: default; }
+
+.calendar-modal-description { font-size: 14px; font-weight: 400; color: #333; }

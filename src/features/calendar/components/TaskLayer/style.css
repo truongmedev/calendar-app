@@ -1,0 +1,16 @@
+.calendar-layers {
+  position: absolute;
+  top: var(--calendar-header-height);
+  bottom: 0;
+  left: var(--calendar-time-width);
+  right: 0;
+  display: grid;
+  z-index: 5;
+}
+
+.calendar-day-layer {
+  position: relative;
+  min-width: 0;
+  touch-action: none;
+  user-select: none;
+}

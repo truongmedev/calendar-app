@@ -18,24 +18,15 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings 0",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "overrides": [
-      {
-        "files": ["src/App.test.tsx"],
-        "rules": {
-          "testing-library/no-node-access": "off",
-          "testing-library/no-container": "off"
-        }
-      }
-    ],
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {

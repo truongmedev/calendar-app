@@ -1,20 +1,3 @@
-.calendar-table-container {
-  --calendar-line: #e4e6e8;
-  --calendar-time-width: 55px;
-  --calendar-header-height: 80px;
-  height: 100vh;
-  height: 100dvh;
-  overflow: auto;
-  background: #fff;
-  color: #202124;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.calendar-table-content {
-  position: relative;
-  min-width: 760px;
-}
-
 .calendar-table {
   width: 100%;
   min-width: 760px;
@@ -114,42 +97,4 @@
 
 .calendar-table td.calendar-slot {
   box-sizing: content-box;
-}
-
-.calendar-current-time {
-  position: absolute;
-  left: -1px;
-  right: 0;
-  z-index: 2;
-  height: 2px;
-  background: #ea4335;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.calendar-current-time::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: inherit;
-  transform: translate(-50%, -50%);
-}
-
-.calendar-table-container:focus-visible {
-  outline: 2px solid #1967d2;
-  outline-offset: -2px;
-}
-
-.calendar-now-layer {
-  position: absolute;
-  top: var(--calendar-header-height);
-  left: var(--calendar-time-width);
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  pointer-events: none;
 }

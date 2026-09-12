@@ -1,5 +1,6 @@
-import { CalendarTask } from '../model/types';
-import { formatLongDate, formatTime } from '../model/time';
+import './style.css';
+import { CalendarTask } from '../../model/types';
+import { formatLongDate, formatTime } from '../../model/time';
 
 export default function TaskDetails({ task }: { task: CalendarTask }) {
   return <>

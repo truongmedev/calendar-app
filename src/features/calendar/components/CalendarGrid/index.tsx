@@ -1,6 +1,7 @@
+import './style.css';
 import { memo } from 'react';
-import { CalendarDay } from '../model/types';
-import { formatTime } from '../model/time';
+import { CalendarDay } from '../../model/types';
+import { formatTime } from '../../model/time';
 
 const HOURS = Array.from({ length: 24 }, (_, hour) => hour);
 
