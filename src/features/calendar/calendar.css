@@ -37,7 +37,7 @@
 .calendar-table thead th {
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 6;
   height: var(--calendar-header-height);
   background: #fff;
   border-bottom: 1px solid var(--calendar-line);
@@ -45,7 +45,7 @@
 
 .calendar-table .calendar-timezone {
   left: 0;
-  z-index: 4;
+  z-index: 7;
   padding-bottom: 18px;
   vertical-align: bottom;
   font-size: 10px;
@@ -91,7 +91,7 @@
   position: sticky;
   left: 0;
   z-index: 1;
-  height: 59px;
+  height: calc(var(--calendar-hour-height) - 1px);
   background: #fff;
   color: #5f6368;
   vertical-align: top;
@@ -107,7 +107,7 @@
 
 .calendar-slot {
   position: relative;
-  height: 59px;
+  height: calc(var(--calendar-hour-height) - 1px);
   border-left: 1px solid var(--calendar-line);
   border-bottom: 1px solid var(--calendar-line);
 }
@@ -142,4 +142,14 @@
 .calendar-table-container:focus-visible {
   outline: 2px solid #1967d2;
   outline-offset: -2px;
+}
+
+.calendar-now-layer {
+  position: absolute;
+  top: var(--calendar-header-height);
+  left: var(--calendar-time-width);
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
 }

@@ -1,0 +1,64 @@
+.calendar-layers {
+  position: absolute;
+  top: var(--calendar-header-height);
+  bottom: 0;
+  left: var(--calendar-time-width);
+  right: 0;
+  display: grid;
+  z-index: 5;
+}
+
+.calendar-day-layer {
+  position: relative;
+  min-width: 0;
+  touch-action: none;
+  user-select: none;
+}
+
+.calendar-task {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 4px 7px;
+  overflow: hidden;
+  background: #e5c83e;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 13px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.calendar-task-title,
+.calendar-task-time { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.calendar-task-title { font-weight: 500; }
+.calendar-task--draft { pointer-events: none; }
+.calendar-task--selected { pointer-events: auto; cursor: grab; }
+.calendar-task--selected:active { cursor: grabbing; }
+.calendar-task--selected,
+.calendar-task:focus-visible { outline: 2px solid #0b57d0; outline-offset: -2px; }
+.calendar-task--conflict { box-shadow: inset 0 0 0 2px #e8790c; }
+
+.calendar-resize-handle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 7px;
+  z-index: 1;
+  cursor: ns-resize;
+  touch-action: none;
+}
+.calendar-resize-handle--start { top: 0; }
+.calendar-resize-handle--end { bottom: 0; }
+.calendar-resize-handle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 0 1px #333;
+  transform: translateX(-50%);
+}

@@ -24,6 +24,15 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "overrides": [
+      {
+        "files": ["src/App.test.tsx"],
+        "rules": {
+          "testing-library/no-node-access": "off",
+          "testing-library/no-container": "off"
+        }
+      }
+    ],
     "extends": [
       "react-app",
       "react-app/jest"
