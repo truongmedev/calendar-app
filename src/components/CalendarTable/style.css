@@ -1,0 +1,138 @@
+.calendar-table-container {
+  --calendar-line: #e4e6e8;
+  height: 100vh;
+  height: 100dvh;
+  overflow: auto;
+  background: #fff;
+  color: #202124;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.calendar-table {
+  width: 100%;
+  min-width: 760px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.calendar-time-column {
+  width: 55px;
+}
+
+.calendar-table th,
+.calendar-table td {
+  box-sizing: border-box;
+  padding: 0;
+  font-weight: 400;
+}
+
+.calendar-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  height: 80px;
+  background: #fff;
+  border-bottom: 1px solid var(--calendar-line);
+}
+
+.calendar-table .calendar-timezone {
+  left: 0;
+  z-index: 4;
+  padding-bottom: 18px;
+  vertical-align: bottom;
+  font-size: 10px;
+  color: #5f6368;
+}
+
+.calendar-day {
+  text-align: center;
+  vertical-align: top;
+}
+
+.calendar-weekday {
+  display: block;
+  margin: 5px 0 6px;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.calendar-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.calendar-day--today .calendar-weekday {
+  color: #1967d2;
+}
+
+.calendar-day--today .calendar-date {
+  background: #0b57d0;
+  color: #fff;
+}
+
+.calendar-hour {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  height: 59px;
+  background: #fff;
+  color: #5f6368;
+  vertical-align: top;
+  text-align: right;
+  font-size: 10px;
+}
+
+.calendar-hour span {
+  display: block;
+  padding-right: 13px;
+  transform: translateY(-50%);
+}
+
+.calendar-slot {
+  position: relative;
+  height: 59px;
+  border-left: 1px solid var(--calendar-line);
+  border-bottom: 1px solid var(--calendar-line);
+}
+
+.calendar-table td.calendar-slot {
+  box-sizing: content-box;
+}
+
+.calendar-current-time {
+  position: absolute;
+  left: -1px;
+  right: 0;
+  z-index: 2;
+  height: 2px;
+  background: #ea4335;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.calendar-current-time::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: inherit;
+  transform: translate(-50%, -50%);
+}
+
+.calendar-table-container:focus-visible {
+  outline: 2px solid #1967d2;
+  outline-offset: -2px;
+}
