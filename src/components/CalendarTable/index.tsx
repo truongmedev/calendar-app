@@ -1,5 +1,6 @@
 import React from 'react'
-import { getDate, getNext7Days, getTimeLabel, getTimeLabelFromNumbers } from '../../utils';
+import { getNext7Days, getTimeLabelFromNumbers } from '../../utils';
+import CanlenderLayer from '../CalendarLayer';
 import './style.css';
 
 interface CalendarTableProps {
@@ -9,12 +10,15 @@ interface CalendarTableProps {
 
 const CalendarTable: React.FC<CalendarTableProps> = React.memo((props) => {
   const { currentDate, currentTime } = props;
-  const next7Days = currentDate ? getNext7Days(currentDate) : [];
+  const next7Days = React.useMemo(() => {
+    return currentDate ? getNext7Days(currentDate) : [];
+  }, [currentDate]);
   const currentHour = currentTime.getHours();
   const minuteOffset = currentTime.getMinutes();
 
   return (
     <div className="calendar-table-container">
+      <div className="calendar-table-content">
       <table className="calendar-table">
         <colgroup>
           <col className="calendar-time-column" />
@@ -51,6 +55,8 @@ const CalendarTable: React.FC<CalendarTableProps> = React.memo((props) => {
           ))}
         </tbody>
       </table>
+        <CanlenderLayer days={next7Days} />
+      </div>
     </div>
   )
 })

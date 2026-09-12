@@ -1,11 +1,18 @@
 .calendar-table-container {
   --calendar-line: #e4e6e8;
+  --calendar-time-width: 55px;
+  --calendar-header-height: 80px;
   height: 100vh;
   height: 100dvh;
   overflow: auto;
   background: #fff;
   color: #202124;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.calendar-table-content {
+  position: relative;
+  min-width: 760px;
 }
 
 .calendar-table {
@@ -17,7 +24,7 @@
 }
 
 .calendar-time-column {
-  width: 55px;
+  width: var(--calendar-time-width);
 }
 
 .calendar-table th,
@@ -31,7 +38,7 @@
   position: sticky;
   top: 0;
   z-index: 3;
-  height: 80px;
+  height: var(--calendar-header-height);
   background: #fff;
   border-bottom: 1px solid var(--calendar-line);
 }

@@ -1,0 +1,45 @@
+.calendar-layers {
+  position: absolute;
+  top: var(--calendar-header-height);
+  bottom: 0;
+  left: var(--calendar-time-width);
+  right: 0;
+  display: grid;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.calendar-day-layer {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  touch-action: none;
+  user-select: none;
+}
+
+.calendar-time-selection {
+  position: absolute;
+  left: 0;
+  right: 10px;
+  box-sizing: border-box;
+  padding: 4px 7px;
+  overflow: hidden;
+  background: #e5c83e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 13px;
+  pointer-events: none;
+}
+
+.calendar-selection-title,
+.calendar-selection-time {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.calendar-selection-title {
+  font-weight: 500;
+}
